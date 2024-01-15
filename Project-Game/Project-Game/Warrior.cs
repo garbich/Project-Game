@@ -1,32 +1,27 @@
-﻿namespace Myspace
+namespace Myspace
 {
     internal class Warrior : Hero
     {
         
-        public Warrior(string Name, int Health, int AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
+        public Warrior(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
             base(Name, Health, AttackPower, ResistanceToPhysical, ResistanceToMagical)
         {
         }
 
-        public int Attack(int AttackPower, Attack typeAttack, int strategy, int weather)
+        public double Attack(double AttackPower, Attack typeAttack)
         {
 
-            int totallDamage = AttackPower;
+            double totallDamage = AttackPower;
 
            
             if (CriticalChance() > 80)
             {
                 Console.WriteLine("Warrior shield 100%");
+                Console.WriteLine("Attack end");
                 return 0;
             }
 
-            if (strategy == 1) {
-                totallDamage -= 3;
-            }
-            else
-            {
-                totallDamage += 3;
-            }
+           
 
             if (typeAttack == Myspace.Attack.Physical)
             {
@@ -48,6 +43,7 @@
                     totallDamage += 10;
                 }
             }
+            Console.WriteLine("Attack on warrior end");
 
             return totallDamage;
         }

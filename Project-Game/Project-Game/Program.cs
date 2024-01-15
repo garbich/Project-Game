@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 
 namespace Myspace
 {
@@ -10,31 +10,34 @@ namespace Myspace
 
     class Program
     {
-        private static int mage1Health = 85;
-        private static int warrior1Health = 105;
-        private static int archer1Health = 95;
+        private static double mage1Health = 85;
+        private static double warrior1Health = 105;
+        private static double archer1Health = 95;
 
-        private static int mage1Attack = 25;
-        private static int warrior1Attack = 30;
-        private static int archer1Attack = 20;
+        private static double mage1Attack = 25;
+        private static double warrior1Attack = 30;
+        private static double archer1Attack = 20;
 
-        private static int mage2Health = 85;
-        private static int warrior2Health = 105;
-        private static int archer2Health = 95;
+        private static double mage2Health = 85;
+        private static double warrior2Health = 105;
+        private static double archer2Health = 95;
 
-        private static int mage2Attack = 25;
-        private static int warrior2Attack = 30;
-        private static int archer2Attack = 20;
+        private static double mage2Attack = 25;
+        private static double warrior2Attack = 30;
+        private static double archer2Attack = 20;
 
-        private static int choose;
-        private static int choose2;
+        private static double player1Damage = 0;
+        private static double player2Damage = 0;
 
-        private static int weather;
-        private static int location;
+        private static int choose =1 ;
+        private static int choose2 = 1;
 
-        private static string start;
+        private static int weather = 4;
+        private static int location = 4;
+
+        private static string start ="y";
         private static int round = 1;
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
             Warrior warrior1 = new Warrior("Warrior", 105, 30, 10, 10);
             Mage mage1 = new Mage("Mage", 85, 25, 5, 10);
@@ -43,13 +46,6 @@ namespace Myspace
             Warrior warrior2 = new Warrior("Warrior", 105, 30, 10, 10);
             Mage mage2 = new Mage("Mage", 85, 25, 5, 10);
             Archer archer2 = new Archer("Archer", 95, 20, 10, 10);
-
-           
-
-           
-
-
-
 
             do
             {
@@ -70,8 +66,6 @@ namespace Myspace
 
                 chooseHero();
 
-
-                int strategy = 0;
                 Console.WriteLine();//////////////////
 
                 if (choose == 1 && choose2 == 2)
@@ -88,14 +82,21 @@ namespace Myspace
                             Console.WriteLine("Warrior win");
                             break;
                         }
-                        mage1Health -= mage1.Attack(warrior1Attack, Attack.Physical, 1, weather);
-                        warrior1Health -= warrior1.Attack(mage1Attack, Attack.Magical, 1, weather);
-                        Console.WriteLine($"Warrior health: {warrior1Health}");
-                        Console.WriteLine($"Mage health: {mage1Health}");
+                        
+                        player1Damage = warrior1.Attack(mage1Attack, Attack.Magical);
+                        player2Damage = mage1.Attack(warrior1Attack, Attack.Physical);
+
+                        Console.WriteLine($"Player 1 damage: {player1Damage}");
+                        Console.WriteLine($"Player 2 damage: {player2Damage}");
+
+                        Console.WriteLine($"Warrior health: {warrior1Health -= player1Damage}");
+                        Console.WriteLine($"Mage health: {mage1Health -= player2Damage}");
                         Console.WriteLine();
                     }
                     warrior1Health = 105;
                     mage1Health = 85;
+                    player1Damage= 0;
+                    player2Damage= 0;
                 }
                 else if (choose == 2 && choose2 == 1)
                 {
@@ -111,14 +112,20 @@ namespace Myspace
                             Console.WriteLine("Mage win");
                             break;
                         }
-                        mage1Health -= mage1.Attack(warrior1Attack, Attack.Physical, 1, weather);
-                        warrior1Health -= warrior1.Attack(mage1Attack, Attack.Magical, 1, weather);
-                        Console.WriteLine($"Warrior health: {warrior1Health}");
-                        Console.WriteLine($"Mage health: {mage1Health}");
+                        player1Damage = mage1.Attack(warrior1Attack, Attack.Physical);
+                        player2Damage = warrior1.Attack(mage1Attack, Attack.Magical);
+
+                        Console.WriteLine($"Player 1 damage: {player1Damage}");
+                        Console.WriteLine($"Player 2 damage: {player2Damage}");
+
+                        Console.WriteLine($"Mage health: {mage1Health -= player1Damage}");
+                        Console.WriteLine($"Warrior health: {warrior1Health -= player2Damage}");
                         Console.WriteLine();
                     }
                     warrior1Health = 105;
                     mage1Health = 85;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 1 && choose2 == 3)
                 {
@@ -134,15 +141,20 @@ namespace Myspace
                             Console.WriteLine("Archer win");
                             break;
                         }
-                        archer1Health -= archer1.Attack(mage1Attack, Attack.Magical, 1, weather);
-                        mage1Health -= mage1.Attack(archer1Attack, Attack.Physical, 1, weather);
+                        player1Damage = archer1.Attack(mage1Attack, Attack.Magical);
+                        player2Damage = mage1.Attack(archer1Attack, Attack.Physical);
 
-                        Console.WriteLine($"Archer health: {archer1Health}");
-                        Console.WriteLine($"Mage health: {mage1Health}");
+                        Console.WriteLine($"Player 1 damage: {player1Damage}");
+                        Console.WriteLine($"Player 2 damage: {player2Damage}");
+
+                        Console.WriteLine($"Archer health: {archer1Health -= player1Damage}");
+                        Console.WriteLine($"Mage health: {mage1Health -= player2Damage}");
                         Console.WriteLine();
                     }
                     archer1Health = 95;
                     mage1Health = 85;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 3 && choose2 == 1)
                 {
@@ -158,8 +170,8 @@ namespace Myspace
                             Console.WriteLine("Mage win");
                             break;
                         }
-                        mage1Health -= mage1.Attack(archer1Attack, Attack.Physical, 1, weather);
-                        archer1Health -= archer1.Attack(mage1Attack, Attack.Magical, 1, weather);
+                        mage1Health -= mage1.Attack(archer1Attack, Attack.Physical);
+                        archer1Health -= archer1.Attack(mage1Attack, Attack.Magical);
                         Console.WriteLine($"Archer health: {archer1Health}");
                         Console.WriteLine($"Mage health: {mage1Health}");
                         Console.WriteLine();
@@ -167,6 +179,8 @@ namespace Myspace
                     }
                     archer1Health = 95;
                     mage1Health = 85;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 2 && choose2 == 3)
                 {
@@ -182,14 +196,16 @@ namespace Myspace
                             Console.WriteLine("Archer win");
                             break;
                         }
-                        archer1Health -= archer1.Attack(warrior1Attack, Attack.Physical, 1, weather);
-                        warrior1Health -= warrior1.Attack(archer1Attack, Attack.Physical, 1, weather);
+                        archer1Health -= archer1.Attack(warrior1Attack, Attack.Physical);
+                        warrior1Health -= warrior1.Attack(archer1Attack, Attack.Physical);
                         Console.WriteLine($"Archer health: {archer1Health}");
                         Console.WriteLine($"Warrior health: {warrior1Health}");
                         Console.WriteLine();
                     }
                     archer1Health = 95;
                     warrior1Health = 105;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 3 && choose2 == 2)
                 {
@@ -205,18 +221,20 @@ namespace Myspace
                             Console.WriteLine("Warrior win");
                             break;
                         }
-                        warrior1Health -= warrior1.Attack(archer1Attack, Attack.Physical, 1, weather);
-                        archer1Health -= archer1.Attack(warrior1Attack, Attack.Physical, 1, weather);
+                        warrior1Health -= warrior1.Attack(archer1Attack, Attack.Physical);
+                        archer1Health -= archer1.Attack(warrior1Attack, Attack.Physical);
                         Console.WriteLine($"Archer health: {archer1Health}");
                         Console.WriteLine($"Warrior health: {warrior1Health}");
                         Console.WriteLine();
                     }
                     archer1Health = 95;
                     warrior1Health = 105;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 1 && choose2 == 1)
                 {
-                    Console.WriteLine("123");
+                    
                     for (int i = 0; i < 99; i++)
                     {
                         if (mage2Health <= 0)
@@ -229,14 +247,16 @@ namespace Myspace
                             Console.WriteLine("Mage 2 win");
                             break;
                         }
-                        mage2Health -= mage2.Attack(mage1Attack, Attack.Magical, 1, weather);
-                        mage1Health -= mage1.Attack(mage2Attack, Attack.Magical, 1, weather);
+                        mage2Health -= mage2.Attack(mage1Attack, Attack.Magical);
+                        mage1Health -= mage1.Attack(mage2Attack, Attack.Magical);
                         Console.WriteLine($"Mage 1 health: {mage1Health}");
                         Console.WriteLine($"Mage 2 health: {mage2Health}");
-                        Console.WriteLine("123");
+                        
                     }
                     mage1Health = 85;
                     mage2Health = 85;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 2 && choose2 == 2)
                 {
@@ -252,14 +272,16 @@ namespace Myspace
                             Console.WriteLine("Warrior 1 win");
                             break;
                         }
-                        warrior2Health -= warrior2.Attack(warrior1Attack, Attack.Physical, 1, weather);
-                        warrior1Health -= warrior1.Attack(warrior2Attack, Attack.Physical, 1, weather);
+                        warrior2Health -= warrior2.Attack(warrior1Attack, Attack.Physical);
+                        warrior1Health -= warrior1.Attack(warrior2Attack, Attack.Physical);
                         Console.WriteLine($"Warrior 1 health: {warrior1Health}");
                         Console.WriteLine($"Warrior 2 health: {warrior2Health}");
                         Console.WriteLine();
                     }
                     warrior1Health = 105;
                     warrior2Health = 105;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
                 else if (choose == 3 && choose2 == 3)
                 {
@@ -275,14 +297,16 @@ namespace Myspace
                             Console.WriteLine("Archer 1 win");
                             break;
                         }
-                        archer2Health -= archer2.Attack(archer1Attack, Attack.Physical, 1, weather);
-                        archer1Health -= archer1.Attack(archer2Attack, Attack.Physical, 1, weather);
+                        archer2Health -= archer2.Attack(archer1Attack, Attack.Physical);
+                        archer1Health -= archer1.Attack(archer2Attack, Attack.Physical);
                         Console.WriteLine($"Archer 1 health: {archer1Health}");
                         Console.WriteLine($"Archer 2 health: {archer2Health}");
                         Console.WriteLine();
                     }
                     archer1Health = 95;
                     archer2Health = 95;
+                    player1Damage = 0;
+                    player2Damage = 0;
                 }
 
 
@@ -295,10 +319,35 @@ namespace Myspace
             
             Console.WriteLine("Choose location(1 - field, 2 - city, 3 - mountain, 4 - random)");
             location = Int32.Parse(Console.ReadLine());
-            if (location == 4)
+            if(location == 1)
+            {
+                archer1Attack += 3;
+                mage1Attack += 3;
+                warrior1Attack -= 2;
+            }
+            else if(location == 2)
+            {
+                warrior1Attack += 2;
+                mage1Attack -= 2;
+                archer1Attack -= 2;
+            }
+            else if(location == 3)
+            {
+                warrior1Attack -= 3;
+                mage1Attack += 3;
+                archer1Attack += 2;
+            }
+            else if (location == 4)
             {
                 Random random = new Random();
                 location = random.Next(1, 3);
+                Console.WriteLine(location);
+            }
+            else
+            {
+                Random random = new Random();
+                location = random.Next(1, 3);
+                Console.WriteLine(location);
             }
 
             Console.WriteLine("Choose weather(1 - rain, 2 - storm, 3 - snow, 4 - random)");
@@ -320,10 +369,17 @@ namespace Myspace
                 archer1Attack += 2;
                 mage1Attack -= 1;
             }
-            if (weather == 4)
+            else if (weather == 4)
             {
                 Random random = new Random();
                 weather = random.Next(1, 3);
+                Console.WriteLine(weather);
+            }
+            else
+            {
+                Random random = new Random();
+                weather = random.Next(1, 3);
+                Console.WriteLine(weather);
             }
         }
 

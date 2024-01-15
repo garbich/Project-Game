@@ -1,4 +1,4 @@
-
+﻿
 namespace Myspace
 {
     class Mage : Hero
@@ -13,22 +13,22 @@ namespace Myspace
 
             double totallDamage = AttackPower;
 
-            
+
 
             if (CriticalChance() > 80)
             {
                 Console.WriteLine("Mage shield 100%");
-                Console.WriteLine("Attack end");
+                Console.WriteLine("Attack on mage end");
                 return 0;
             }
 
-            
 
-            
+
+
 
             if (typeAttack == Myspace.Attack.Physical)
             {
-                
+
                 totallDamage -= ResistanceToPhysical;
                 if (CriticalChance() > 50)
                 {
@@ -39,7 +39,7 @@ namespace Myspace
             }
             else
             {
-               
+
                 totallDamage -= ResistanceToMagical;
                 if (CriticalChance() > 50)
                 {

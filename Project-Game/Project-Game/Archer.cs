@@ -1,8 +1,8 @@
-namespace Myspace
+﻿namespace Myspace
 {
     internal class Archer : Hero
     {
-        public Archer(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical  ) :
+        public Archer(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
             base(Name, Health, AttackPower, ResistanceToPhysical, ResistanceToMagical)
         {
         }
@@ -12,19 +12,19 @@ namespace Myspace
 
             double totallDamage = AttackPower;
 
-           
+
 
             if (CriticalChance() > 80)
             {
                 Console.WriteLine("Archer shield 100%");
-                Console.WriteLine("Attack end");
+                Console.WriteLine("Attack on archer end");
                 return 0;
             }
 
 
             if (typeAttack == Myspace.Attack.Physical)
             {
-                
+
                 totallDamage -= ResistanceToPhysical;
                 if (CriticalChance() > 50)
                 {
@@ -34,8 +34,8 @@ namespace Myspace
             }
             else
             {
-               
-                totallDamage -= ResistanceToMagical; 
+
+                totallDamage -= ResistanceToMagical;
                 if (CriticalChance() > 50)
                 {
                     Console.WriteLine("Enemy hit with critical damage");

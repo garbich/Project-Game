@@ -53,7 +53,7 @@ namespace Myspace
 
             do
             {
-                mage1.Health = 100;
+               
                 Console.WriteLine("Start round? - (y/n)");
                 start = Console.ReadLine();
                 if (start == "n")

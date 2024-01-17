@@ -1,6 +1,4 @@
-﻿using System.Collections.Specialized;
-using static System.Net.Mime.MediaTypeNames;
-
+﻿
 namespace Myspace
 {
     enum Attack
@@ -32,6 +30,8 @@ namespace Myspace
 
         private static int choose = 1;
         private static int choose2 = 1;
+        private static int countinue = 0;
+        private static int strategy = 1;
 
         private static int weather = 4;
         private static int location = 4;
@@ -39,21 +39,21 @@ namespace Myspace
         private static string start = "y";
         private static int round = 1;
 
-        private static Warrior warrior1 = new Warrior("Warrior", 105, 30, 10, 10);
-        private static Mage mage1 = new Mage("Mage", 85, 25, 5, 10);
-        private static Archer archer1 = new Archer("Archer", 95, 20, 10, 10);
+        private static Warrior warrior1 = new Warrior("Warrior", warrior1Health, warrior1Attack, 10, 10);
+        private static Mage mage1 = new Mage("Mage", mage1Health, mage1Attack, 5, 10);
+        private static Archer archer1 = new Archer("Archer", archer1Health, archer1Attack, 10, 10);
 
-        private static Warrior warrior2 = new Warrior("Warrior", 105, 30, 10, 10);
-        private static Mage mage2 = new Mage("Mage", 85, 25, 5, 10);
-        private static Archer archer2 = new Archer("Archer", 95, 20, 10, 10);
+        private static Warrior warrior2 = new Warrior("Warrior", warrior2Health, warrior2Attack, 10, 10);
+        private static Mage mage2 = new Mage("Mage", mage2Health, mage2Attack, 5, 10);
+        private static Archer archer2 = new Archer("Archer", archer2Health, archer2Attack, 10, 10);
 
         public static void Main(string[] args)
         {
-            
+
 
             do
             {
-               
+                
                 Console.WriteLine("Start round? - (y/n)");
                 start = Console.ReadLine();
                 if (start == "n")
@@ -64,7 +64,7 @@ namespace Myspace
                 Console.Write("Number of round: ");
                 Console.Write(round);
                 Console.WriteLine();
-                round++;
+                
 
                 chooseWeatherAndLocation();
 
@@ -75,10 +75,8 @@ namespace Myspace
                 mageBattles();
                 warriorBattles();
                 archerBattles();
-                
-                
 
-
+                round++;
             } while (start != "n");
 
         }
@@ -210,12 +208,12 @@ namespace Myspace
                         Console.WriteLine("Mage win");
                         break;
                     }
-                     if (mage1Health <= 0)
+                    if (mage1Health <= 0)
                     {
                         Console.WriteLine("Warrior win");
                         break;
                     }
-
+           
                     player1Damage = warrior1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}");
                     warrior1Health = printHealth(warrior1Health, player1Damage);
@@ -224,13 +222,15 @@ namespace Myspace
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}");
                     mage1Health = printHealth(mage1Health, player2Damage);
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}" , Console.ForegroundColor = ConsoleColor.Green); Console.ForegroundColor = ConsoleColor.White;
+
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                   
-
-                    
                     Console.WriteLine();
+                    Console.WriteLine();
+
+                    countinue = Int32.Parse(Console.ReadLine());
+
                 }
                 warrior1Health = 105;
                 mage1Health = 85;
@@ -251,7 +251,7 @@ namespace Myspace
                         Console.WriteLine("Mage win");
                         break;
                     }
-                     if (mage1Health <= 0)
+                    if (mage1Health <= 0)
                     {
                         Console.WriteLine("Archer win");
                         break;
@@ -267,8 +267,9 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                   
 
+
+                    Console.WriteLine();
                     Console.WriteLine();
                 }
                 archer1Health = 95;
@@ -307,8 +308,9 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                    
-                  
+
+
+                    Console.WriteLine();
                     Console.WriteLine();
 
                 }
@@ -335,7 +337,7 @@ namespace Myspace
                         Console.WriteLine("Warrior win");
                         break;
                     }
-                     if (warrior1Health <= 0)
+                    if (warrior1Health <= 0)
                     {
                         Console.WriteLine("Mage win");
                         break;
@@ -351,8 +353,9 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                   
-                    
+
+
+                    Console.WriteLine();
                     Console.WriteLine();
                 }
                 warrior1Health = 105;
@@ -374,7 +377,7 @@ namespace Myspace
                         Console.WriteLine("Warrior win");
                         break;
                     }
-                     if (warrior1Health <= 0)
+                    if (warrior1Health <= 0)
                     {
                         Console.WriteLine("Archer win");
                         break;
@@ -390,8 +393,9 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                   
-                    
+
+
+                    Console.WriteLine();
                     Console.WriteLine();
                 }
                 archer1Health = 95;
@@ -403,7 +407,7 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if(warrior1Health == 0 && warrior2Health == 0)
+                    if (warrior1Health == 0 && warrior2Health == 0)
                     {
                         Console.WriteLine("Draw");
                         break;
@@ -429,8 +433,9 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                   
-                    
+
+
+                    Console.WriteLine();
                     Console.WriteLine();
 
                 }
@@ -473,8 +478,8 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                    
-                    
+
+
                     Console.WriteLine();
 
                 }
@@ -514,8 +519,8 @@ namespace Myspace
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
-                  
-                   
+
+
                     Console.WriteLine();
                 }
                 archer1Health = 95;
@@ -565,11 +570,52 @@ namespace Myspace
         {
             health -= damage;
 
-            if(health < 0)
+            if (health < 0)
             {
                 return 0;
             }
             return health;
         }
+
+        private static void strategyOnRound()
+        {
+            if(strategy == 1)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        //private static void shop()
+        //{
+        //    int choice = 0;
+        //    Console.WriteLine("Make a choice: ");
+        //    Console.WriteLine("1 - Attack Power(+10)");
+        //    Console.WriteLine("2 - Health(+15)");
+        //    Console.WriteLine("3 - ResistanceToPhysical(+8)");
+        //    Console.WriteLine("4 - ResistanceToMagical(+6)");
+
+        //    switch (choice)
+        //    {
+        //        case 1:
+        //            mage1Attack += 10;
+                   
+        //        break;
+        //        case 2:
+
+        //        break;
+
+        //        case 3:
+
+        //        break;
+        //        case 4:
+
+        //        break;
+
+        //    }
+        //}
     }
 }

@@ -3,7 +3,7 @@ namespace Myspace
 {
     class Mage : Hero
     {
-        public Mage(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
+        public Mage(string Name, double Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
             base(Name, Health, AttackPower, ResistanceToPhysical, ResistanceToMagical)
         {
         }

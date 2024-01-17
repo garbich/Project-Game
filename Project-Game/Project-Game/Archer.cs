@@ -2,7 +2,7 @@
 {
     internal class Archer : Hero
     {
-        public Archer(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
+        public Archer(string Name, double Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
             base(Name, Health, AttackPower, ResistanceToPhysical, ResistanceToMagical)
         {
         }

@@ -3,7 +3,7 @@
     internal class Warrior : Hero
     {
 
-        public Warrior(string Name, int Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
+        public Warrior(string Name, double Health, double AttackPower, int ResistanceToPhysical, int ResistanceToMagical) :
             base(Name, Health, AttackPower, ResistanceToPhysical, ResistanceToMagical)
         {
         }

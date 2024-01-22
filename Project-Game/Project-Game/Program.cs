@@ -30,7 +30,7 @@ namespace Myspace
 
         private static int choose = 1;
         private static int choose2 = 1;
-        private static int countinue = 0;
+        private static string countinue = "";
         private static int strategy = 1;
 
         private static int weather = 4;
@@ -53,7 +53,7 @@ namespace Myspace
 
             do
             {
-                
+
                 Console.WriteLine("Start round? - (y/n)");
                 start = Console.ReadLine();
                 if (start == "n")
@@ -64,7 +64,7 @@ namespace Myspace
                 Console.Write("Number of round: ");
                 Console.Write(round);
                 Console.WriteLine();
-                
+
 
                 chooseWeatherAndLocation();
 
@@ -198,71 +198,43 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (warrior1Health == 0 && mage1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (warrior1Health <= 0)
-                    {
-                        Console.WriteLine("Mage win");
-                        break;
-                    }
-                    if (mage1Health <= 0)
-                    {
-                        Console.WriteLine("Warrior win");
-                        break;
-                    }
-           
                     player1Damage = warrior1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}");
                     warrior1Health = printHealth(warrior1Health, player1Damage);
+                    if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = mage1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}");
                     mage1Health = printHealth(mage1Health, player2Damage);
+                    if (mageLose(mage1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}" , Console.ForegroundColor = ConsoleColor.Green); Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", Console.ForegroundColor = ConsoleColor.Red);
 
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", Console.ForegroundColor = ConsoleColor.Red); Console.ForegroundColor= ConsoleColor.White;
 
                     Console.WriteLine();
                     Console.WriteLine();
 
-                    countinue = Int32.Parse(Console.ReadLine());
+                    countinue = Console.ReadLine();
 
                 }
-                warrior1Health = 105;
-                mage1Health = 85;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
             else if (choose == 1 && choose2 == 3)
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (archer1Health == 0 && mage1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (archer1Health <= 0)
-                    {
-                        Console.WriteLine("Mage win");
-                        break;
-                    }
-                    if (mage1Health <= 0)
-                    {
-                        Console.WriteLine("Archer win");
-                        break;
-                    }
+                    
+                    
                     player1Damage = archer1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}");
                     archer1Health = printHealth(archer1Health, player1Damage);
+                    if (archerLose(archer1Health)) { break; }
 
                     player2Damage = mage1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}");
                     mage1Health = printHealth(mage1Health, player2Damage);
+                    if (mageLose(mage1Health)) { break; }
 
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
@@ -272,38 +244,23 @@ namespace Myspace
                     Console.WriteLine();
                     Console.WriteLine();
                 }
-                archer1Health = 95;
-                mage1Health = 85;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
             else if (choose == 1 && choose2 == 1)
             {
 
                 for (int i = 0; i < 99; i++)
                 {
-                    if (mage1Health == 0 && mage2Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (mage2Health <= 0)
-                    {
-                        Console.WriteLine("Mage 1 win");
-                        break;
-                    }
-                    if (mage1Health <= 0)
-                    {
-                        Console.WriteLine("Mage 2 win");
-                        break;
-                    }
+                   
                     player1Damage = mage2.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Mage 2 health: {printHealth(mage2Health, player1Damage)}");
                     mage2Health = printHealth(mage2Health, player1Damage);
+                    if (mageLose(mage1Health)) { break; }
 
                     player2Damage = mage1.Attack(mage2Attack, Attack.Magical);
                     Console.WriteLine($"Mage 1 health: {printHealth(mage1Health, player2Damage)}");
                     mage1Health = printHealth(mage1Health, player2Damage);
+                    if (mageLose(mage1Health)) { break; }
 
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
@@ -314,10 +271,7 @@ namespace Myspace
                     Console.WriteLine();
 
                 }
-                mage1Health = 85;
-                mage2Health = 85;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
         }
 
@@ -327,29 +281,16 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (warrior1Health == 0 && mage1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (mage1Health <= 0)
-                    {
-                        Console.WriteLine("Warrior win");
-                        break;
-                    }
-                    if (warrior1Health <= 0)
-                    {
-                        Console.WriteLine("Mage win");
-                        break;
-                    }
+                    
                     player1Damage = mage1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}");
                     mage1Health = printHealth(mage1Health, player1Damage);
+                    if (mageLose(mage1Health)) { break; }
 
                     player2Damage = warrior1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}");
                     warrior1Health = printHealth(warrior1Health, player2Damage);
-
+                    if (warriorLose(warrior1Health)) { break; }
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
@@ -358,37 +299,22 @@ namespace Myspace
                     Console.WriteLine();
                     Console.WriteLine();
                 }
-                warrior1Health = 105;
-                mage1Health = 85;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
             else if (choose == 2 && choose2 == 3)
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (warrior1Health == 0 && archer1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (archer1Health <= 0)
-                    {
-                        Console.WriteLine("Warrior win");
-                        break;
-                    }
-                    if (warrior1Health <= 0)
-                    {
-                        Console.WriteLine("Archer win");
-                        break;
-                    }
+                
                     player1Damage = archer1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}");
                     archer1Health = printHealth(archer1Health, player1Damage);
+                    if (archerLose(archer1Health)) { break; }
 
                     player2Damage = warrior1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}");
                     warrior1Health = printHealth(warrior1Health, player2Damage);
+                    if (warriorLose(warrior1Health)) { break; }
 
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
@@ -398,37 +324,22 @@ namespace Myspace
                     Console.WriteLine();
                     Console.WriteLine();
                 }
-                archer1Health = 95;
-                warrior1Health = 105;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
             else if (choose == 2 && choose2 == 2)
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (warrior1Health == 0 && warrior2Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (warrior1Health <= 0)
-                    {
-                        Console.WriteLine("Warrior 2 win");
-                        break;
-                    }
-                    if (warrior2Health <= 0)
-                    {
-                        Console.WriteLine("Warrior 1 win");
-                        break;
-                    }
+                   
                     player1Damage = warrior2.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Warrior 2 health: {printHealth(warrior2Health, player1Damage)}");
                     warrior2Health = printHealth(warrior2Health, player1Damage);
+                    if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = warrior1.Attack(warrior2Attack, Attack.Physical);
                     Console.WriteLine($"Warrior 1 health: {printHealth(warrior1Health, player2Damage)}");
                     warrior1Health = printHealth(warrior1Health, player2Damage);
+                    if (warriorLose(warrior1Health)) { break; }
 
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
@@ -439,10 +350,7 @@ namespace Myspace
                     Console.WriteLine();
 
                 }
-                warrior1Health = 105;
-                warrior2Health = 105;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
         }
 
@@ -452,29 +360,16 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (archer1Health == 0 && mage1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (mage1Health <= 0)
-                    {
-                        Console.WriteLine("Archer win");
-                        break;
-                    }
-                    else if (archer1Health <= 0)
-                    {
-                        Console.WriteLine("Mage win");
-                        break;
-                    }
+                   
                     player1Damage = mage1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}");
                     mage1Health = printHealth(mage1Health, player1Damage);
+                    if (mageLose(mage1Health)) { break; }
 
                     player2Damage = archer1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}");
                     archer1Health = printHealth(archer1Health, player2Damage);
-
+                    if (archerLose(archer1Health)) { break; }
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
 
@@ -483,38 +378,23 @@ namespace Myspace
                     Console.WriteLine();
 
                 }
-                archer1Health = 95;
-                mage1Health = 85;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
 
             else if (choose == 3 && choose2 == 2)
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (warrior1Health == 0 && archer1Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (warrior1Health <= 0)
-                    {
-                        Console.WriteLine("Archer win");
-                        break;
-                    }
-                    else if (archer1Health <= 0)
-                    {
-                        Console.WriteLine("Warrior win");
-                        break;
-                    }
+                   
                     player1Damage = warrior1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}");
                     warrior1Health = printHealth(warrior1Health, player1Damage);
+                    if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = archer1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}");
                     archer1Health = printHealth(archer1Health, player2Damage);
+                    if (archerLose(archer1Health)) { break; }
 
                     Console.WriteLine($"Player 1 damage: {player1Damage}");
                     Console.WriteLine($"Player 2 damage: {player2Damage}");
@@ -523,46 +403,27 @@ namespace Myspace
 
                     Console.WriteLine();
                 }
-                archer1Health = 95;
-                warrior1Health = 105;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
 
             else if (choose == 3 && choose2 == 3)
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    if (archer1Health == 0 && archer2Health == 0)
-                    {
-                        Console.WriteLine("Draw");
-                        break;
-                    }
-                    if (archer1Health <= 0)
-                    {
-                        Console.WriteLine("Archer 2 win");
-                        break;
-                    }
-                    if (archer2Health <= 0)
-                    {
-                        Console.WriteLine("Archer 1 win");
-                        break;
-                    }
+                    
                     player1Damage = archer2.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Archer 2 health: {printHealth(archer2Health, player1Damage)}");
                     archer2Health = printHealth(archer2Health, player1Damage);
+                    if (archerLose(archer1Health)) { break; }
 
                     player2Damage = archer1.Attack(archer2Attack, Attack.Physical);
                     Console.WriteLine($"Archer 1 health: {printHealth(archer1Health, player2Damage)}");
                     archer1Health = printHealth(archer1Health, player2Damage);
-
+                    if (archerLose(archer1Health)) { break; }
 
                     Console.WriteLine();
                 }
-                archer1Health = 95;
-                archer2Health = 95;
-                player1Damage = 0;
-                player2Damage = 0;
+                reset();
             }
         }
 
@@ -570,23 +431,41 @@ namespace Myspace
         {
             health -= damage;
 
-            if (health < 0)
+            if (health <= 0)
             {
                 return 0;
             }
             return health;
         }
 
-        private static void strategyOnRound()
+        private static bool mageLose(double health)
         {
-            if(strategy == 1)
+            if(health == 0)
             {
-
+                Console.WriteLine("Mage lose!");
+                return true;
             }
-            else
+            return false;
+        }
+
+        private static bool warriorLose(double health)
+        {
+            if(health == 0)
             {
-
+                Console.WriteLine("Warrior lose!");
+                return true;
             }
+            return false;
+        }
+
+        private static bool archerLose(double health)
+        {
+            if(health == 0)
+            {
+                Console.WriteLine("Archer lose!");
+                return true;
+            }
+            return false;
         }
 
         //private static void shop()
@@ -602,7 +481,7 @@ namespace Myspace
         //    {
         //        case 1:
         //            mage1Attack += 10;
-                   
+
         //        break;
         //        case 2:
 
@@ -617,5 +496,27 @@ namespace Myspace
 
         //    }
         //}
+
+        private static void reset()
+        {
+           mage1Health = 85;
+           warrior1Health = 105;
+           archer1Health = 95;
+
+           mage1Attack = 25;
+           warrior1Attack = 30;
+           archer1Attack = 20;
+
+           mage2Health = 85;
+           warrior2Health = 105;
+           archer2Health = 95;
+
+           mage2Attack = 25;
+           warrior2Attack = 30;
+           archer2Attack = 20;
+
+           player1Damage = 0;
+           player2Damage = 0;
+    }
     }
 }

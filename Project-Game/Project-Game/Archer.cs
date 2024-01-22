@@ -29,7 +29,7 @@
                 if (CriticalChance() > 50)
                 {
                     Console.WriteLine("Enemy hit with critical damage");
-                    totallDamage += 10;
+                    totallDamage *= 1.5;
                 }
             }
             else
@@ -39,7 +39,7 @@
                 if (CriticalChance() > 50)
                 {
                     Console.WriteLine("Enemy hit with critical damage");
-                    totallDamage += 10;
+                    totallDamage *= 1.5;
                 }
             }
             Console.WriteLine("Attack on archer end");
@@ -49,7 +49,7 @@
         public int CriticalChance()
         {
             Random random = new Random();
-            int rand = random.Next(1, 100);
+            int rand = random.Next(1, 101);
             return rand;
         }
     }

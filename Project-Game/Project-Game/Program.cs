@@ -1,5 +1,4 @@
-﻿
-namespace Myspace
+﻿namespace Myspace
 {
     enum Attack
     {
@@ -9,21 +8,21 @@ namespace Myspace
 
     class Program
     {
-        private static double mage1Health = 85;
-        private static double warrior1Health = 105;
-        private static double archer1Health = 95;
+        private static double mage1Health = 720;
+        private static double warrior1Health = 1150;
+        private static double archer1Health = 1000;
 
-        private static double mage1Attack = 25;
-        private static double warrior1Attack = 30;
-        private static double archer1Attack = 20;
+        private static double mage1Attack = 291;
+        private static double warrior1Attack = 202;
+        private static double archer1Attack = 225;
 
-        private static double mage2Health = 85;
-        private static double warrior2Health = 105;
-        private static double archer2Health = 95;
+        private static double mage2Health = 720;
+        private static double warrior2Health = 1150;
+        private static double archer2Health = 1000;
 
-        private static double mage2Attack = 25;
-        private static double warrior2Attack = 30;
-        private static double archer2Attack = 20;
+        private static double mage2Attack = 291;
+        private static double warrior2Attack = 202;
+        private static double archer2Attack = 225;
 
         private static double player1Damage = 0;
         private static double player2Damage = 0;
@@ -39,13 +38,13 @@ namespace Myspace
         private static string start = "y";
         private static int round = 1;
 
-        private static Warrior warrior1 = new Warrior("Warrior", warrior1Health, warrior1Attack, 10, 10);
-        private static Mage mage1 = new Mage("Mage", mage1Health, mage1Attack, 5, 10);
-        private static Archer archer1 = new Archer("Archer", archer1Health, archer1Attack, 10, 10);
+        private static Warrior warrior1 = new Warrior("Warrior", warrior1Health, warrior1Attack, 37, 30);
+        private static Mage mage1 = new Mage("Mage", mage1Health, mage1Attack, 20, 25);
+        private static Archer archer1 = new Archer("Archer", archer1Health, archer1Attack, 23, 25);
 
-        private static Warrior warrior2 = new Warrior("Warrior", warrior2Health, warrior2Attack, 10, 10);
-        private static Mage mage2 = new Mage("Mage", mage2Health, mage2Attack, 5, 10);
-        private static Archer archer2 = new Archer("Archer", archer2Health, archer2Attack, 10, 10);
+        private static Warrior warrior2 = new Warrior("Warrior", warrior2Health, warrior2Attack, 37, 30);
+        private static Mage mage2 = new Mage("Mage", mage2Health, mage2Attack, 20, 25);
+        private static Archer archer2 = new Archer("Archer", archer2Health, archer2Attack, 23, 25);
 
         public static void Main(string[] args)
         {
@@ -61,8 +60,9 @@ namespace Myspace
                     return;
                 }
 
-                Console.Write("Number of round: ");
+                Console.Write("Number of round: ", Console.ForegroundColor = ConsoleColor.Magenta);
                 Console.Write(round);
+                whiteBackGround();
                 Console.WriteLine();
 
 
@@ -88,32 +88,44 @@ namespace Myspace
             location = Int32.Parse(Console.ReadLine());
             if (location == 1)
             {
-                archer1Attack += 3;
-                mage1Attack += 3;
-                warrior1Attack -= 2;
+                archer1Attack += 30;
+                mage1Attack += 25;
+                warrior1Attack -= 20;
+
+                archer2Attack += 30;
+                mage2Attack += 25;
+                warrior2Attack -= 20;
             }
             else if (location == 2)
             {
-                warrior1Attack += 2;
-                mage1Attack -= 2;
-                archer1Attack -= 2;
+                warrior1Attack += 20;
+                mage1Attack -= 15;
+                archer1Attack -= 18;
+
+                warrior2Attack += 20;
+                mage2Attack -= 15;
+                archer2Attack -= 18;
             }
             else if (location == 3)
             {
-                warrior1Attack -= 3;
-                mage1Attack += 3;
-                archer1Attack += 2;
+                warrior1Attack -= 28;
+                mage1Attack += 25;
+                archer1Attack += 20;
+
+                warrior2Attack -= 28;
+                mage2Attack += 25;
+                archer2Attack += 20;
             }
             else if (location == 4)
             {
                 Random random = new Random();
-                location = random.Next(1, 3);
+                location = random.Next(1, 4);
                 Console.WriteLine(location);
             }
             else
             {
                 Random random = new Random();
-                location = random.Next(1, 3);
+                location = random.Next(1, 4);
                 Console.WriteLine(location);
             }
 
@@ -121,34 +133,42 @@ namespace Myspace
             weather = Int32.Parse(Console.ReadLine());
             if (weather == 1)
             {
-                mage1Attack -= 3;
-                warrior1Attack -= 2;
-                archer1Attack -= 2;
-                mage2Attack -= 3;
-                warrior2Attack -= 2;
-                archer2Attack -= 2;
+                mage1Attack -= 26;
+                warrior1Attack -= 27;
+                archer1Attack -= 25;
+
+                mage2Attack -= 26;
+                warrior2Attack -= 27;
+                archer2Attack -= 25;
             }
             else if (weather == 2)
             {
-                mage1Attack += 5;
-                archer1Attack -= 4;
+                mage1Attack += 40;
+                archer1Attack -= 30;
+
+                mage1Attack += 40;
+                archer1Attack -=30 ;
             }
             else if (weather == 3)
             {
-                warrior1Attack -= 3;
-                archer1Attack += 2;
-                mage1Attack -= 1;
+                warrior1Attack -= 25;
+                archer1Attack += 30;
+                mage1Attack -= 10;
+
+                warrior1Attack -= 25;
+                archer1Attack += 30;
+                mage1Attack -= 10;
             }
             else if (weather == 4)
             {
                 Random random = new Random();
-                weather = random.Next(1, 3);
+                weather = random.Next(1, 4);
                 Console.WriteLine(weather);
             }
             else
             {
                 Random random = new Random();
-                weather = random.Next(1, 3);
+                weather = random.Next(1, 4);
                 Console.WriteLine(weather);
             }
         }
@@ -199,22 +219,20 @@ namespace Myspace
                 for (int i = 0; i < 99; i++)
                 {
                     player1Damage = warrior1.Attack(mage1Attack, Attack.Magical);
-                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}", greenBackGround()); 
+                    whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = mage1.Attack(warrior1Attack, Attack.Physical);
-                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}", greenBackGround()); 
+                    whiteBackGround();
                     mage1Health = printHealth(mage1Health, player2Damage);
                     if (mageLose(mage1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}", Console.ForegroundColor = ConsoleColor.Red);
-
-                    Console.WriteLine($"Player 2 damage: {player2Damage}", Console.ForegroundColor = ConsoleColor.Red); Console.ForegroundColor= ConsoleColor.White;
-
                     Console.WriteLine();
-                    Console.WriteLine();
-
                     countinue = Console.ReadLine();
 
                 }
@@ -223,26 +241,24 @@ namespace Myspace
             else if (choose == 1 && choose2 == 3)
             {
                 for (int i = 0; i < 99; i++)
-                {
-                    
-                    
+                { 
                     player1Damage = archer1.Attack(mage1Attack, Attack.Magical);
-                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}",greenBackGround());
+                    whiteBackGround();
                     archer1Health = printHealth(archer1Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
 
                     player2Damage = mage1.Attack(archer1Attack, Attack.Physical);
-                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     mage1Health = printHealth(mage1Health, player2Damage);
                     if (mageLose(mage1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
                     Console.WriteLine();
                     Console.WriteLine();
+                    countinue = Console.ReadLine();
                 }
                 reset();
             }
@@ -251,24 +267,24 @@ namespace Myspace
 
                 for (int i = 0; i < 99; i++)
                 {
-                   
+
                     player1Damage = mage2.Attack(mage1Attack, Attack.Magical);
-                    Console.WriteLine($"Mage 2 health: {printHealth(mage2Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Mage 2 health: {printHealth(mage2Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     mage2Health = printHealth(mage2Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
 
                     player2Damage = mage1.Attack(mage2Attack, Attack.Magical);
-                    Console.WriteLine($"Mage 1 health: {printHealth(mage1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Mage 1 health: {printHealth(mage1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     mage1Health = printHealth(mage1Health, player2Damage);
                     if (mageLose(mage1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
                     Console.WriteLine();
                     Console.WriteLine();
+                    countinue = Console.ReadLine();
 
                 }
                 reset();
@@ -281,23 +297,24 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    
+
                     player1Damage = mage1.Attack(warrior1Attack, Attack.Physical);
-                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     mage1Health = printHealth(mage1Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
 
                     player2Damage = warrior1.Attack(mage1Attack, Attack.Magical);
-                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player2Damage);
                     if (warriorLose(warrior1Health)) { break; }
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
+                   
                     Console.WriteLine();
-                    Console.WriteLine();
+                    
+                    countinue = Console.ReadLine();
                 }
                 reset();
             }
@@ -305,24 +322,22 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                
+
                     player1Damage = archer1.Attack(warrior1Attack, Attack.Physical);
-                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}", greenBackGround());
                     archer1Health = printHealth(archer1Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
 
                     player2Damage = warrior1.Attack(archer1Attack, Attack.Physical);
-                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player2Damage);
                     if (warriorLose(warrior1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
                     Console.WriteLine();
-                    Console.WriteLine();
+                    countinue = Console.ReadLine();
                 }
                 reset();
             }
@@ -330,24 +345,23 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                   
+
                     player1Damage = warrior2.Attack(warrior1Attack, Attack.Physical);
-                    Console.WriteLine($"Warrior 2 health: {printHealth(warrior2Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Warrior 2 health: {printHealth(warrior2Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     warrior2Health = printHealth(warrior2Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = warrior1.Attack(warrior2Attack, Attack.Physical);
-                    Console.WriteLine($"Warrior 1 health: {printHealth(warrior1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Warrior 1 health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player2Damage);
                     if (warriorLose(warrior1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
                     Console.WriteLine();
-                    Console.WriteLine();
+                    countinue = Console.ReadLine();
 
                 }
                 reset();
@@ -360,22 +374,23 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                   
+
                     player1Damage = mage1.Attack(archer1Attack, Attack.Physical);
-                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Mage health: {printHealth(mage1Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     mage1Health = printHealth(mage1Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
 
                     player2Damage = archer1.Attack(mage1Attack, Attack.Magical);
-                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     archer1Health = printHealth(archer1Health, player2Damage);
                     if (archerLose(archer1Health)) { break; }
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
+                 
                     Console.WriteLine();
+                    countinue = Console.ReadLine();
 
                 }
                 reset();
@@ -385,23 +400,23 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                   
+
                     player1Damage = warrior1.Attack(archer1Attack, Attack.Physical);
-                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
 
                     player2Damage = archer1.Attack(warrior1Attack, Attack.Physical);
-                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     archer1Health = printHealth(archer1Health, player2Damage);
                     if (archerLose(archer1Health)) { break; }
 
-                    Console.WriteLine($"Player 1 damage: {player1Damage}");
-                    Console.WriteLine($"Player 2 damage: {player2Damage}");
-
-
-
                     Console.WriteLine();
+                    countinue = Console.ReadLine();
                 }
                 reset();
             }
@@ -410,18 +425,23 @@ namespace Myspace
             {
                 for (int i = 0; i < 99; i++)
                 {
-                    
+
                     player1Damage = archer2.Attack(archer1Attack, Attack.Physical);
-                    Console.WriteLine($"Archer 2 health: {printHealth(archer2Health, player1Damage)}");
+                    Console.WriteLine($"Player 1 damage: {player1Damage}", redBackGround());
+                    Console.WriteLine($"Archer 2 health: {printHealth(archer2Health, player1Damage)}", greenBackGround());
+                    whiteBackGround();
                     archer2Health = printHealth(archer2Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
 
                     player2Damage = archer1.Attack(archer2Attack, Attack.Physical);
-                    Console.WriteLine($"Archer 1 health: {printHealth(archer1Health, player2Damage)}");
+                    Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
+                    Console.WriteLine($"Archer 1 health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
+                    whiteBackGround();
                     archer1Health = printHealth(archer1Health, player2Damage);
                     if (archerLose(archer1Health)) { break; }
 
                     Console.WriteLine();
+                    countinue = Console.ReadLine();
                 }
                 reset();
             }
@@ -440,7 +460,7 @@ namespace Myspace
 
         private static bool mageLose(double health)
         {
-            if(health == 0)
+            if (health == 0)
             {
                 Console.WriteLine("Mage lose!");
                 return true;
@@ -450,7 +470,7 @@ namespace Myspace
 
         private static bool warriorLose(double health)
         {
-            if(health == 0)
+            if (health == 0)
             {
                 Console.WriteLine("Warrior lose!");
                 return true;
@@ -460,7 +480,7 @@ namespace Myspace
 
         private static bool archerLose(double health)
         {
-            if(health == 0)
+            if (health == 0)
             {
                 Console.WriteLine("Archer lose!");
                 return true;
@@ -499,24 +519,41 @@ namespace Myspace
 
         private static void reset()
         {
-           mage1Health = 85;
-           warrior1Health = 105;
-           archer1Health = 95;
+            mage1Health = 720;
+            warrior1Health = 1150;
+            archer1Health = 1000;
 
-           mage1Attack = 25;
-           warrior1Attack = 30;
-           archer1Attack = 20;
+            mage1Attack = 291;
+            warrior1Attack = 202;
+            archer1Attack = 225;
 
-           mage2Health = 85;
-           warrior2Health = 105;
-           archer2Health = 95;
+            mage2Health = 720;
+            warrior2Health = 1150;
+            archer2Health = 1000;
 
-           mage2Attack = 25;
-           warrior2Attack = 30;
-           archer2Attack = 20;
+            mage2Attack = 291;
+            warrior2Attack = 202;
+            archer2Attack = 225;
 
-           player1Damage = 0;
-           player2Damage = 0;
-    }
+            player1Damage = 0;
+            player2Damage = 0;
+        }
+
+        private static ConsoleColor greenBackGround()
+        {
+            return Console.ForegroundColor = ConsoleColor.Green;
+        }
+
+        private static ConsoleColor redBackGround()
+        {
+            return Console.ForegroundColor = ConsoleColor.Red;
+        }
+
+        private static void whiteBackGround()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+       
     }
 }

@@ -1,32 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Visual\\Project-Game\\Project-Game\\Project-Game.csproj": {}
+    "C:\\Users\\Support\\source\\repos\\Project-Game\\Project-Game\\Project-Game.csproj": {}
   },
   "projects": {
-    "C:\\Visual\\Project-Game\\Project-Game\\Project-Game.csproj": {
+    "C:\\Users\\Support\\source\\repos\\Project-Game\\Project-Game\\Project-Game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Visual\\Project-Game\\Project-Game\\Project-Game.csproj",
+        "projectUniqueName": "C:\\Users\\Support\\source\\repos\\Project-Game\\Project-Game\\Project-Game.csproj",
         "projectName": "Project-Game",
-        "projectPath": "C:\\Visual\\Project-Game\\Project-Game\\Project-Game.csproj",
-        "packagesPath": "C:\\Users\\danul\\.nuget\\packages\\",
-        "outputPath": "C:\\Visual\\Project-Game\\Project-Game\\obj\\",
+        "projectPath": "C:\\Users\\Support\\source\\repos\\Project-Game\\Project-Game\\Project-Game.csproj",
+        "packagesPath": "C:\\Users\\Support\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Support\\source\\repos\\Project-Game\\Project-Game\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\danul\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Support\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -37,8 +41,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
@@ -55,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

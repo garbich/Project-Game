@@ -33,8 +33,7 @@ namespace Myspace
                 if (CriticalChance() > 50)
                 {
                     Console.WriteLine("Enemy hit with critical damage");
-                    AttackPower *= 0.5;
-                    totallDamage += 10;
+                    totallDamage *= 1.5;
                 }
             }
             else
@@ -44,7 +43,7 @@ namespace Myspace
                 if (CriticalChance() > 50)
                 {
                     Console.WriteLine("Enemy hit with critical damage");
-                    totallDamage += 5;
+                    totallDamage *= 1.5;
                 }
             }
 
@@ -54,7 +53,7 @@ namespace Myspace
         public int CriticalChance()
         {
             Random random = new Random();
-            int rand = random.Next(1, 100);
+            int rand = random.Next(1, 101);
             return rand;
         }
     }

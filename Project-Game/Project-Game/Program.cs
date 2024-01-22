@@ -86,6 +86,17 @@
 
             Console.WriteLine("Choose location(1 - field, 2 - city, 3 - mountain, 4 - random)");
             location = Int32.Parse(Console.ReadLine());
+
+            
+            if (location == 4)
+            {
+                Random random = new Random();
+                location = random.Next(1, 4);
+                Console.WriteLine("Choosed location - " + location);
+                
+            }
+
+
             if (location == 1)
             {
                 archer1Attack += 30;
@@ -116,21 +127,24 @@
                 mage2Attack += 25;
                 archer2Attack += 20;
             }
-            else if (location == 4)
-            {
-                Random random = new Random();
-                location = random.Next(1, 4);
-                Console.WriteLine("Choosed location - " + location);
-            }
             else
             {
                 Random random = new Random();
                 location = random.Next(1, 4);
                 Console.WriteLine("Choosed location - " + location);
+               
             }
 
             Console.WriteLine("Choose weather(1 - rain, 2 - storm, 3 - snow, 4 - random)");
             weather = Int32.Parse(Console.ReadLine());
+
+            if (weather == 4)
+            {
+                Random random = new Random();
+                weather = random.Next(1, 4);
+                Console.WriteLine("Choosed weather - " + weather);
+            }
+
             if (weather == 1)
             {
                 mage1Attack -= 26;
@@ -159,17 +173,12 @@
                 archer1Attack += 30;
                 mage1Attack -= 10;
             }
-            else if (weather == 4)
-            {
-                Random random = new Random();
-                weather = random.Next(1, 4);
-                Console.WriteLine("Choosed weather - " + weather);
-            }
             else
             {
                 Random random = new Random();
                 weather = random.Next(1, 4);
                 Console.WriteLine("Choosed weather - " + weather);
+               
             }
         }
 

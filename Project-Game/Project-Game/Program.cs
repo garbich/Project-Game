@@ -12,7 +12,7 @@
         private static double warrior1Health = 1150;
         private static double archer1Health = 1000;
 
-        private static double mage1Attack = 291;
+        private static double mage1Attack = 281;
         private static double warrior1Attack = 202;
         private static double archer1Attack = 225;
 
@@ -120,13 +120,13 @@
             {
                 Random random = new Random();
                 location = random.Next(1, 4);
-                Console.WriteLine(location);
+                Console.WriteLine("Choosed location - " + location);
             }
             else
             {
                 Random random = new Random();
                 location = random.Next(1, 4);
-                Console.WriteLine(location);
+                Console.WriteLine("Choosed location - " + location);
             }
 
             Console.WriteLine("Choose weather(1 - rain, 2 - storm, 3 - snow, 4 - random)");
@@ -163,24 +163,37 @@
             {
                 Random random = new Random();
                 weather = random.Next(1, 4);
-                Console.WriteLine(weather);
+                Console.WriteLine("Choosed weather - " + weather);
             }
             else
             {
                 Random random = new Random();
                 weather = random.Next(1, 4);
-                Console.WriteLine(weather);
+                Console.WriteLine("Choosed weather - " + weather);
             }
         }
 
         private static void chooseHero()
         {
 
-            Console.WriteLine("Choose who attack(1 - Mage, 2 - Warrior, 3 - Archer)");
+            Console.WriteLine("Choose who attack(1 - Mage, 2 - Warrior, 3 - Archer, 4 - Random)");
             choose = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine("Choose whom attack(1 - Mage, 2 - Warrior, 3 - Archer)");
+            Console.WriteLine("Choose whom attack(1 - Mage, 2 - Warrior, 3 - Archer, 4 - Random)");
             choose2 = Int32.Parse(Console.ReadLine());
+
+            if (choose == 4)
+            {
+                Random random = new Random();
+                choose = random.Next(1, 4);
+
+            }
+            if (choose2 == 4)
+            {
+                Random random = new Random();
+                choose2 = random.Next(1, 4);
+
+            }
 
             if (choose == 1)
             {
@@ -196,6 +209,7 @@
                 Console.Write("Archer attacks ");
             }
 
+
             if (choose2 == 1)
             {
                 Console.WriteLine("mage");
@@ -208,9 +222,9 @@
             {
                 Console.WriteLine("archer");
             }
+
             Console.WriteLine();
         }
-
 
         private static void mageBattles()
         {
@@ -224,6 +238,7 @@
                     whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
+                    countinue = Console.ReadLine();
 
                     player2Damage = mage1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
@@ -248,7 +263,7 @@
                     whiteBackGround();
                     archer1Health = printHealth(archer1Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = mage1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Mage health: {printHealth(mage1Health, player2Damage)}", greenBackGround());
@@ -274,7 +289,7 @@
                     whiteBackGround();
                     mage2Health = printHealth(mage2Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = mage1.Attack(mage2Attack, Attack.Magical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Mage 1 health: {printHealth(mage1Health, player2Damage)}", greenBackGround());
@@ -304,7 +319,7 @@
                     whiteBackGround();
                     mage1Health = printHealth(mage1Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = warrior1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
@@ -328,7 +343,7 @@
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player1Damage)}", greenBackGround());
                     archer1Health = printHealth(archer1Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = warrior1.Attack(archer1Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Warrior health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
@@ -352,7 +367,7 @@
                     whiteBackGround();
                     warrior2Health = printHealth(warrior2Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = warrior1.Attack(warrior2Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Warrior 1 health: {printHealth(warrior1Health, player2Damage)}", greenBackGround());
@@ -381,7 +396,7 @@
                     whiteBackGround();
                     mage1Health = printHealth(mage1Health, player1Damage);
                     if (mageLose(mage1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = archer1.Attack(mage1Attack, Attack.Magical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
@@ -407,7 +422,7 @@
                     whiteBackGround();
                     warrior1Health = printHealth(warrior1Health, player1Damage);
                     if (warriorLose(warrior1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = archer1.Attack(warrior1Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Archer health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
@@ -432,7 +447,7 @@
                     whiteBackGround();
                     archer2Health = printHealth(archer2Health, player1Damage);
                     if (archerLose(archer1Health)) { break; }
-
+                    countinue = Console.ReadLine();
                     player2Damage = archer1.Attack(archer2Attack, Attack.Physical);
                     Console.WriteLine($"Player 2 damage: {player2Damage}", redBackGround());
                     Console.WriteLine($"Archer 1 health: {printHealth(archer1Health, player2Damage)}", greenBackGround());
@@ -488,34 +503,7 @@
             return false;
         }
 
-        //private static void shop()
-        //{
-        //    int choice = 0;
-        //    Console.WriteLine("Make a choice: ");
-        //    Console.WriteLine("1 - Attack Power(+10)");
-        //    Console.WriteLine("2 - Health(+15)");
-        //    Console.WriteLine("3 - ResistanceToPhysical(+8)");
-        //    Console.WriteLine("4 - ResistanceToMagical(+6)");
-
-        //    switch (choice)
-        //    {
-        //        case 1:
-        //            mage1Attack += 10;
-
-        //        break;
-        //        case 2:
-
-        //        break;
-
-        //        case 3:
-
-        //        break;
-        //        case 4:
-
-        //        break;
-
-        //    }
-        //}
+      
 
         private static void reset()
         {
